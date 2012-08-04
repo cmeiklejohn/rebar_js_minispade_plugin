@@ -35,7 +35,7 @@
 %%            "priv/assets/javascripts" by default
 %%
 %%  out_dir: where to put concatenated javascript files
-%%           "priv/assets/javascripts" by default
+%%           "priv/www/javascripts" by default
 %%
 %%  modules: files to build into minispade reigstered modules
 %%           empty list by default.
@@ -43,7 +43,7 @@
 %% The default settings are the equivalent of:
 %%   {js_minispade, [
 %%       {out_dir,  "priv/assets/javascripts"},
-%%       {doc_root, "priv/assets/javascripts"},
+%%       {doc_root, "priv/www/javascripts"},
 %%       {modules,  []}
 %%   ]}.
 %%
@@ -51,7 +51,7 @@
 %%
 %%   {js_minispade, [
 %%       {out_dir,  "priv/assets/javascripts"},
-%%       {doc_root, "priv/assets/javascripts"},
+%%       {doc_root, "priv/www/javascripts"},
 %%       {modules,  ["models", "controllers"]
 %%       ]}
 %%   ]}.
@@ -105,7 +105,7 @@ option(Option, Options) ->
     proplists:get_value(Option, Options, default(Option)).
 
 default(doc_root) -> "priv/assets/javascripts";
-default(out_dir)  -> "priv/assets/javascripts";
+default(out_dir)  -> "priv/www/javascripts";
 default(modules)  -> [].
 
 normalize_path(Path, Basedir) ->
