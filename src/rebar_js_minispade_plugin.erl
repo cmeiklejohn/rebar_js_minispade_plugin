@@ -88,7 +88,7 @@ clean(Config, _AppFile) ->
     Targets = [normalize_path(Module, OutDir) || Module <- Modules],
     delete_each(Targets).
 
-%% @spec minispade() -> list()
+%% @spec minispade(list(), list()) -> list()
 %% @doc Given a module name and a JavaScript function, return Minispade.
 minispade(Module, Contents) ->
     Functionized = lists:flatten(["function() {", Contents, "}"]),
