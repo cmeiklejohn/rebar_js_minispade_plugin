@@ -92,7 +92,7 @@ clean(Config, _AppFile) ->
 %% @doc Given a module name and a JavaScript function, return Minispade.
 minispade(Module, Contents) ->
     Functionized = lists:flatten(["function() {", Contents, "}"]),
-    lists:flatten(["minispade.register('", Module, "', ", Functionized, ")"]).
+    list_to_binary(lists:flatten(["minispade.register('", Module, "', ", Functionized, ")"])).
 
 %% ===================================================================
 %% Internal functions
@@ -156,9 +156,13 @@ delete_each([First | Rest]) ->
 -ifdef(TEST).
 
 minispade_test() ->
-    Module = "alerter",
-    Function = "alert('zomg');",
-    Output = minispade(Module, Function),
-    ?assertEqual("minispade.register('alerter', function() {alert('zomg');})", Output).
+    ListModule = "alerter",
+    ListFunction = "alert('zomg');",
+    ListOutput = minispade(ListModule, ListFunction),
+    ?assertEqual(<<"minispade.register('alerter', function() {alert('zomg');})">>, ListOutput),
+    BinaryModule = <<"alerter">>,
+    BinaryFunction = <<"alert('zomg');">>,
+    BinaryOutput = minispade(BinaryModule, BinaryFunction),
+    ?assertEqual(<<"minispade.register('alerter', function() {alert('zomg');})">>, BinaryOutput).
 
 -endif.
